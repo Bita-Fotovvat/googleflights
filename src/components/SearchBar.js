@@ -44,6 +44,7 @@ export default function SearchBar(){
       });
       const [anchorEl, setAnchorEl] = useState(null);
       const [origin, setOrigin] = useState("");
+      const [destination, setDestination] = useState("");
 
       const handleOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -193,6 +194,20 @@ export default function SearchBar(){
                             )
                             }}
                         >
+                        </TextField>
+                        <TextField
+                        placeholder="Where to?"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <LocationOnIcon sx={{ color: "gray", width: "1.5rem" }} />
+                              </InputAdornment>
+                            ),
+                          }}
+                        >
+
                         </TextField>
                     </Box>
                 </Box>
