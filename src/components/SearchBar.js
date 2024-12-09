@@ -36,6 +36,31 @@ const theme = createTheme({
 export default function SearchBar(){
     const [tripType, setTripType] = useState(10);
     const [tripClass, setTripClass] = useState("economy");
+    const [counts, setCounts] = useState({
+        adults: 1,
+        children: 0,
+        infantsSeat: 0,
+        infantsLap: 0,
+      });
+      const [anchorEl, setAnchorEl] = useState(null);
+
+      const handleOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
+      const handleIncrement = (category) => {
+        setCounts((prev) => ({ ...prev, [category]: prev[category] + 1 }));
+      };
+    
+      const handleDecrement = (category) => {
+        setCounts((prev) => ({
+          ...prev,
+          [category]: Math.max(0, prev[category] - 1),
+        }));
+      };
+      const summary = counts.adults + counts.children + counts.infantsSeat + counts.infantsLap;
 
     return(
         <ThemeProvider theme={theme}>
@@ -59,19 +84,80 @@ export default function SearchBar(){
             >
                 Flights
             </Typography>
+
+
             <Box>
-                <FormControl>
-                    <Select>
-                        <MenuItem>
+                <FormControl variant="standard">
+                    <Select
+                    value={tripType}
+                    onChange={(event)=> setTripType(event.target.value)}
+                    disableUnderline
+                    >
+                        <MenuItem value={10}>
                             <SyncAltIcon />
                             Round trip                        
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem value={20}>
                             <TrendingFlatIcon />
                             One way
                         </MenuItem>
                     </Select>
                 </FormControl>
+                <FormControl variant="standard">
+                    <Select
+                    value={summary} 
+                    onClick={handleOpen} 
+                    readOnly
+                    disableUnderline
+                    >
+                        <MenuItem  value={summary}>
+                            <PersonOutlineIcon />
+                            {summary}
+                        </MenuItem>
+                    </Select>
+                </FormControl>
+                <Popover
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                >
+                    <Box padding={2}>
+                        {["adults", "children", "infantsSeat", "infantsLap"].map((category) => (
+                        <React.Fragment key={category}>
+                            <Grid container alignItems="center" spacing={2}>
+                                <Grid item xs={6}>
+                                    <Typography>
+                                        {category.charAt(0).toUpperCase() +
+                                        category.slice(1).replace(/([A-Z])/g, " $1")}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <IconButton onClick={() => handleDecrement(category)}>
+                                        <RemoveIcon />
+                                    </IconButton>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Typography>{counts[category]}</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <IconButton onClick={() => handleIncrement(category)}>
+                                        <AddIcon />
+                                    </IconButton>
+                                </Grid>
+                            </Grid>
+                            <Divider />
+                        </React.Fragment>
+                        ))}
+                        <Button 
+                        onClick={handleClose} 
+                        fullWidth variant="contained" 
+                        style={{ marginTop: 10 }}
+                        >
+                        Done
+                        </Button>
+                    </Box>
+                </Popover>
                 
 
             </Box>
