@@ -45,6 +45,8 @@ export default function SearchBar(){
       const [anchorEl, setAnchorEl] = useState(null);
       const [origin, setOrigin] = useState("");
       const [destination, setDestination] = useState("");
+      const [departureDate, setDepartureDate] = useState("");
+      const [returnDate, setReturnDate] = useState("");
 
       const handleOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -206,13 +208,25 @@ export default function SearchBar(){
                               </InputAdornment>
                             ),
                           }}
-                        >
-
-                        </TextField>
+                        />
+                    </Box>
+                    <Box>
+                        <TextField 
+                        type="date"
+                        placeholder="Departure"
+                        value={departureDate}
+                        onChange={(e) => setDepartureDate(e.target.value)}
+                        InputLabelProps={{ shrink: true }}
+                        />
+                        <TextField
+                        type="date"
+                        placeholder="Return"
+                        value={returnDate}
+                        onChange={(e)=> setReturnDate(e.target.value)}
+                        InputLabelProps={{ shrink: true }}
+                        />
                     </Box>
                 </Box>
-                
-
             </Box>
         </ThemeProvider>
     )
