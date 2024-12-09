@@ -34,6 +34,9 @@ const theme = createTheme({
   });
 
 export default function SearchBar(){
+    const [tripType, setTripType] = useState(10);
+    const [tripClass, setTripClass] = useState("economy");
+
     return(
         <ThemeProvider theme={theme}>
             <Typography
