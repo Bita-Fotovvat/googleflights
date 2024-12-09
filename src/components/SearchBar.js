@@ -43,6 +43,7 @@ export default function SearchBar(){
         infantsLap: 0,
       });
       const [anchorEl, setAnchorEl] = useState(null);
+      const [origin, setOrigin] = useState("");
 
       const handleOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -176,6 +177,25 @@ export default function SearchBar(){
                     </Select>
 
                 </FormControl>
+
+
+                <Box>
+                    <Box>
+                        <TextField
+                        placeholder="Where from?"
+                        value={origin}
+                        onChange={(e) => setOrigin(e.target.value)}
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <PanoramaFishEyeIcon sx={{ color: "gray", width: "0.9rem" }} />
+                              </InputAdornment>
+                            )
+                            }}
+                        >
+                        </TextField>
+                    </Box>
+                </Box>
                 
 
             </Box>
