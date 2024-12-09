@@ -158,6 +158,24 @@ export default function SearchBar(){
                         </Button>
                     </Box>
                 </Popover>
+
+                <FormControl
+                variant="standard">
+                    <Select
+                    value={tripClass}
+                    onChange={(e) => setTripClass(e.target.value)}
+                    sx={{
+                        fontSize: { xs: "0.9rem", sm: "1rem" },
+                      }}
+                    disableUnderline
+                    >
+                        <MenuItem value={"economy"}>Economy</MenuItem>
+                        <MenuItem value={"premium_economy"}>Premium Economy</MenuItem>
+                        <MenuItem value={"business"}>Business</MenuItem>
+                        <MenuItem value={"first"}>First</MenuItem>
+                    </Select>
+
+                </FormControl>
                 
 
             </Box>
