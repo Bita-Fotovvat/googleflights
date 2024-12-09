@@ -14,14 +14,14 @@ export default function Header() {
         boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
         bgcolor: 'white',
         width: '100%',
+        padding: '0 1rem',
         position: 'fixed',
-        left: 0,
         top: 0,
         zIndex: 1000 }}
     >
       <Box>
         <IconButton color="inherit">
-          <MenuIcon/>
+          <MenuIcon />
         </IconButton>
       </Box>
       <a
