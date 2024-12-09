@@ -3,7 +3,6 @@ import axios from "axios";
 const API_KEY = process.env.REACT_APP_MY_API_KEY;
 const API_HOST = "sky-scrapper.p.rapidapi.com";
 
-
 export const fetchSkyIdAndEntityId = async (location) => {
   const options = {
     method: "GET",
