@@ -88,7 +88,6 @@ export default function SearchBar(){
             returnDate
           );
           setFlightDetails(flights);
-          console.log(flights);
         } catch (error) {
           console.error("Error in handleSearch:", error);
         }
@@ -313,7 +312,7 @@ export default function SearchBar(){
                           }}
                           sx={{
                             "& .MuiOutlinedInput-root": {
-                              height: { xs: "auto", md: "2.2rem" }, // Ensure container height matches
+                              height: { xs: "auto", md: "2.2rem" },
                             },
                           }}
                         />
@@ -323,6 +322,7 @@ export default function SearchBar(){
                         <TextField 
                         type="date"
                         placeholder="Departure"
+                        label="Departure"
                         value={departureDate}
                         onChange={(e) => setDepartureDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
@@ -333,6 +333,7 @@ export default function SearchBar(){
                         <TextField
                         type="date"
                         placeholder="Return"
+                        label="Return"
                         value={returnDate}
                         onChange={(e)=> setReturnDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}

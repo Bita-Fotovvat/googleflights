@@ -1,4 +1,5 @@
 import { Typography, Box, Card, Divider } from "@mui/material";
+import MapImage from "../assets/images/map.png"
 
 
 export default function FlightResults(props){
