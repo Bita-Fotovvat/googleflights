@@ -20,6 +20,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import InputAdornment from '@mui/material/InputAdornment';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SearchIcon from '@mui/icons-material/Search';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -309,6 +310,29 @@ export default function SearchBar(){
                         />
                     </Box>
                 </Box>
+            </Box>
+
+            <Box
+            sx={{
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center"
+            }}>
+                <Button
+                variant="contained" 
+                color="primary"
+                sx={{
+                borderRadius: "50rem", 
+                textTransform: "none", 
+                position: "relative", 
+                top: "-20px", 
+                margin: "auto"
+                }} 
+                onClick={handleSearch}
+                >
+                    <SearchIcon />
+                    Explore
+                </Button>
             </Box>
         </ThemeProvider>
     )
