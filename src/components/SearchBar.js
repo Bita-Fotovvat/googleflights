@@ -48,6 +48,7 @@ export default function SearchBar(){
       const [destination, setDestination] = useState("");
       const [departureDate, setDepartureDate] = useState("");
       const [returnDate, setReturnDate] = useState("");
+      const [flightDetails, setFlightDetails] = useState([]);
 
       const handleOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -66,6 +67,31 @@ export default function SearchBar(){
         }));
       };
       const summary = counts.adults + counts.children + counts.infantsSeat + counts.infantsLap;
+
+      const handleSearch = async () => {
+        try {
+          const originSkyIdAndEntityId = await fetchSkyIdAndEntityId(origin);
+          const destinationSkyIdAndEntityId = await fetchSkyIdAndEntityId(destination);
+    
+          if (!originSkyIdAndEntityId || !destinationSkyIdAndEntityId) {
+            console.error("SkyId(s) could not be retrieved. Aborting flight search.");
+            return;
+          }
+    
+          const flights = await fetchFlightDetails(
+            originSkyIdAndEntityId,
+            destinationSkyIdAndEntityId,
+            tripClass,
+            counts,
+            departureDate,
+            returnDate
+          );
+          setFlightDetails(flights);
+          console.log(flights);
+        } catch (error) {
+          console.error("Error in handleSearch:", error);
+        }
+      };
 
     return(
         <ThemeProvider theme={theme}>
@@ -265,8 +291,7 @@ export default function SearchBar(){
                                 height: { xs: "auto", md: "2.2rem" },
                                 },
                               }}
-                        >
-                        </TextField>
+                        />
                         <TextField
                         placeholder="Where to?"
                         value={destination}
@@ -283,6 +308,11 @@ export default function SearchBar(){
                             sx: {
                                 height: { xs: "auto", md: "2.2rem" },
                               },
+                          }}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              height: { xs: "auto", md: "2.2rem" }, // Ensure container height matches
+                            },
                           }}
                         />
                     </Box>
@@ -334,6 +364,9 @@ export default function SearchBar(){
                     Explore
                 </Button>
             </Box>
+
+
+            
         </ThemeProvider>
     )
 }
