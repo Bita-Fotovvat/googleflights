@@ -123,11 +123,12 @@ export default function SearchBar(){
             bgcolor: "white",
             width: "100%",
             borderRadius: 2,
+            height:"13rem",
             [theme.breakpoints.up(768)]: {
                 boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.3)",
                 width: "95%",
                 margin: "auto",
-                height:"10rem"
+                height:"10rem",
             },
             })}
             >
