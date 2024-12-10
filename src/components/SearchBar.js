@@ -1,3 +1,4 @@
+import FlightResults from "./FlightResults";
 import React, { useState } from "react";
 import { fetchSkyIdAndEntityId, fetchFlightDetails } from "../api/flights";
 import {
@@ -366,7 +367,10 @@ export default function SearchBar(){
                 </Button>
             </Box>
 
-
+            <FlightResults 
+            origin={origin}
+            flightDetails={flightDetails}
+            />
             
         </ThemeProvider>
     )
