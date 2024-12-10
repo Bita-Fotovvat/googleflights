@@ -12,8 +12,6 @@ import {
     Popover,
     Grid,
     IconButton,
-    Divider,
-    Card
   } from "@mui/material";
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
@@ -135,7 +133,7 @@ export default function SearchBar(){
                 <FormControl 
                 variant="standard"
                 sx={{
-                  margin: {xs:"0.6rem 0 0 0.5rem", sm:"0.25rem 0 0 2rem"},
+                  margin: {xs:"0.6rem 0 0 0.5rem", sm:"0.6rem 0 0 2rem"},
                   minWidth: { xs: 99, sm: 120 },
                   fontSize: { xs: "0.9rem", sm: "1rem" },
                 }}>
@@ -151,8 +149,8 @@ export default function SearchBar(){
                         fontSize: { xs: "0.9rem", sm: "1rem" },
                       }}
                     >
-                        <MenuItem value={10}>
-                            <SyncAltIcon style={{ marginRight: "8px", color: "grey" }}/>
+                        <MenuItem value={10}  >
+                            <SyncAltIcon style={{ marginRight: "8px", color: "grey", paddingTop: "0.3rem" }}/>
                             Round trip                        
                         </MenuItem>
                         <MenuItem value={20}>
@@ -175,80 +173,78 @@ export default function SearchBar(){
                     </Select>
                 </FormControl>
 
-
-
                 <Popover
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                 >
-                <Box padding={2}>
-                {["adults", "children", "infantsSeat", "infantsLap"].map((category) => (
-                <React.Fragment key={category}>
-                  <Grid
-                  container
-                  alignItems="center"
-                  spacing={1}
-                  sx={{
-                    marginBottom: "0.5rem",
-                      }}
-                  >
-              <Grid item xs={6}>
-                <Typography>
-                  {category.charAt(0).toUpperCase() +
-                    category.slice(1).replace(/([A-Z])/g, " $1")}
-                </Typography>
-              </Grid>
-          <Grid item xs={2} sx={{ textAlign: "center" }}>
-            <IconButton
-              onClick={() => handleDecrement(category)}
-              disabled={counts[category] === 0}
-              sx={{
-                width: "2rem",
-                height: "2rem",
-                bgcolor: counts[category] === 0 ? "grey.300" : "#F0FFFF",
-                borderRadius: "4px",
-                "&:hover": {
-                  bgcolor: counts[category] === 0 ? "grey.300" : "#89CFF0",
-                },
-              }}
-            >
-              <RemoveIcon />
-            </IconButton>
-          </Grid>
-          <Grid item xs={2} sx={{ textAlign: "center" }}>
-            <Typography>{counts[category]}</Typography>
-          </Grid>
-          <Grid item xs={2} sx={{ textAlign: "center" }}>
-            <IconButton
-              onClick={() => handleIncrement(category)}
-              sx={{
-                width: "2rem",
-                height: "2rem",
-                bgcolor: "#F0FFFF",
-                borderRadius: "4px",
-                "&:hover": {
-                  bgcolor: "#89CFF0",
-                },
-              }}
-            >
-              <AddIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
-      </React.Fragment>
-    ))}
-    <Button
-      onClick={handleClose}
-      fullWidth
-      variant="contained"
-      style={{ marginTop: 10 }}
-    >
-      Done
-    </Button>
-  </Box>
-</Popover>
+                  <Box padding={2}>
+                      {["adults", "children", "infantsSeat", "infantsLap"].map((category) => (
+                        <React.Fragment key={category}>
+                          <Grid
+                          container
+                          alignItems="center"
+                          spacing={1}
+                          sx={{
+                            marginBottom: "0.5rem",
+                          }}
+                          >
+                            <Grid item xs={6}>
+                              <Typography>
+                                {category.charAt(0).toUpperCase() +
+                                category.slice(1).replace(/([A-Z])/g, " $1")}
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={2} sx={{ textAlign: "center" }}>
+                              <IconButton
+                              onClick={() => handleDecrement(category)}
+                              disabled={counts[category] === 0}
+                              sx={{
+                                width: "2rem",
+                                height: "2rem",
+                                bgcolor: counts[category] === 0 ? "grey.300" : "#F0FFFF",
+                                borderRadius: "4px",
+                                "&:hover": {
+                                  bgcolor: counts[category] === 0 ? "grey.300" : "#89CFF0",
+                                },
+                              }}
+                              >
+                              <RemoveIcon />
+                              </IconButton>
+                            </Grid>
+                            <Grid item xs={2} sx={{ textAlign: "center" }}>
+                              <Typography>{counts[category]}</Typography>
+                            </Grid>
+                            <Grid item xs={2} sx={{ textAlign: "center" }}>
+                              <IconButton
+                              onClick={() => handleIncrement(category)}
+                              sx={{
+                                width: "2rem",
+                                height: "2rem",
+                                bgcolor: "#F0FFFF",
+                                borderRadius: "4px",
+                                "&:hover": {
+                                  bgcolor: "#89CFF0",
+                                },
+                              }}
+                              >
+                                <AddIcon />
+                              </IconButton>
+                            </Grid>
+                          </Grid>
+                        </React.Fragment>
+                      ))}
+                      <Button
+                      onClick={handleClose}
+                      fullWidth
+                      variant="contained"
+                      style={{ marginTop: 10 }}
+                      >
+                      Done
+                      </Button>
+                  </Box>
+                </Popover>
 
 
 

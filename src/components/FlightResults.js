@@ -17,7 +17,7 @@ export default function FlightResults(props) {
           <img
             src={MapImage}
             alt="World Map"
-            style={{ width: "90%", maxWidth: "500px", height: "auto" }}
+            style={{ width: "90%", maxWidth: "1100px", height: "auto", paddingBottom: "3rem" }}
           />
         </Box>
       ) : (

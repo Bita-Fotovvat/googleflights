@@ -65,7 +65,7 @@ export const fetchFlightDetails = async (
   };
 
   try {
-    const response = await axios.request(options);
+    const response = await axios.request(options)
     return response.data?.data?.itineraries || [];
   } catch (error) {
     console.error("Error fetching flight details:", error);
