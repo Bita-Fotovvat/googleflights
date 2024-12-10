@@ -90,24 +90,50 @@ export default function SearchBar(){
             </Typography>
 
 
-            <Box>
-                <FormControl variant="standard">
+            <Box
+            sx={(theme) => ({          
+            boxShadow: "0px 3px 4px rgba(0, 0, 0, 0.2)",
+            bgcolor: "white",
+            width: "100%",
+            borderRadius: 2,
+            [theme.breakpoints.up(768)]: {
+                boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.3)",
+                width: "95%",
+                margin: "auto",
+                height:"10rem"
+            },
+            })}
+            >
+                <FormControl 
+                variant="standard"
+                sx={{
+                  margin: {xs:"0.6rem 0 0 0.5rem", sm:"0.25rem 0 0 2rem"},
+                  minWidth: { xs: 99, sm: 120 },
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                }}>
                     <Select
                     value={tripType}
                     onChange={(event)=> setTripType(event.target.value)}
                     disableUnderline
+                    sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        width: { xs: "80px", sm: "100px", md: "150px" },
+                        fontSize: { xs: "0.9rem", sm: "1rem" },
+                      }}
                     >
                         <MenuItem value={10}>
-                            <SyncAltIcon />
+                            <SyncAltIcon style={{ marginRight: "8px", color: "grey" }}/>
                             Round trip                        
                         </MenuItem>
                         <MenuItem value={20}>
-                            <TrendingFlatIcon />
+                            <TrendingFlatIcon style={{ marginRight: "8px", color: "grey" }}/>
                             One way
                         </MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl variant="standard">
+                <FormControl variant="standard" sx={{ m: 1 }}>
                     <Select
                     value={summary} 
                     onClick={handleOpen} 
@@ -115,7 +141,7 @@ export default function SearchBar(){
                     disableUnderline
                     >
                         <MenuItem  value={summary}>
-                            <PersonOutlineIcon />
+                            <PersonOutlineIcon style={{ color: "grey", marginRight: "8px" }}/>
                             {summary}
                         </MenuItem>
                     </Select>
@@ -155,7 +181,8 @@ export default function SearchBar(){
                         ))}
                         <Button 
                         onClick={handleClose} 
-                        fullWidth variant="contained" 
+                        fullWidth 
+                        variant="contained" 
                         style={{ marginTop: 10 }}
                         >
                         Done
@@ -164,7 +191,13 @@ export default function SearchBar(){
                 </Popover>
 
                 <FormControl
-                variant="standard">
+                variant="standard"
+                sx={{
+                    marginTop: "0.8rem",
+                    minWidth: { xs: 100, sm: 120 },
+                    fontSize: { xs: "0.75rem", sm: "1rem" },
+                  }}
+                  >
                     <Select
                     value={tripClass}
                     onChange={(e) => setTripClass(e.target.value)}
@@ -182,41 +215,87 @@ export default function SearchBar(){
                 </FormControl>
 
 
-                <Box>
-                    <Box>
+                <Box
+                sx={(theme) => ({
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: 2,
+                margin: "auto",
+                marginTop: 0,
+                height: "7rem",
+                [theme.breakpoints.up(768)]: {
+                    flexDirection: "row",
+                    height: "3rem"
+                },
+                })}
+                >
+                    <Box
+                    sx={(theme) => ({
+                    display: "flex", 
+                    flexDirection: "row", 
+                    width: "95%", 
+                    marginRight: 4, 
+                    marginBottom:"1rem",
+                        [theme.breakpoints.up(768)]: {
+                            marginBottom:0,
+                        },
+                    })}
+                    >
                         <TextField
                         placeholder="Where from?"
                         value={origin}
                         onChange={(e) => setOrigin(e.target.value)}
+                        variant="outlined"
+                        fullWidth
+                        size="small"
                         InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
                                 <PanoramaFishEyeIcon sx={{ color: "gray", width: "0.9rem" }} />
                               </InputAdornment>
-                            )
+                            ),
+                            sx: {
+                                height: { xs: "auto", md: "2.2rem" },
+                                },
                             }}
+                            sx={{
+                                "& .MuiOutlinedInput-root": {
+                                height: { xs: "auto", md: "2.2rem" },
+                                },
+                              }}
                         >
                         </TextField>
                         <TextField
                         placeholder="Where to?"
                         value={destination}
                         onChange={(e) => setDestination(e.target.value)}
+                        variant="outlined"
+                        fullWidth
+                        size="small"
                         InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
                                 <LocationOnIcon sx={{ color: "gray", width: "1.5rem" }} />
                               </InputAdornment>
                             ),
+                            sx: {
+                                height: { xs: "auto", md: "2.2rem" },
+                              },
                           }}
                         />
                     </Box>
-                    <Box>
+                    <Box 
+                    sx={{display: "flex", flexDirection: "row", justifyContent:"center", width: "95%", marginRight: 4}}>
                         <TextField 
                         type="date"
                         placeholder="Departure"
                         value={departureDate}
                         onChange={(e) => setDepartureDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
+                        variant="outlined"
+                        fullWidth
+                        size="small"
                         />
                         <TextField
                         type="date"
@@ -224,6 +303,9 @@ export default function SearchBar(){
                         value={returnDate}
                         onChange={(e)=> setReturnDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
+                        variant="outlined"
+                        fullWidth
+                        size="small"
                         />
                     </Box>
                 </Box>
