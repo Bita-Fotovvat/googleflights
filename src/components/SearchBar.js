@@ -174,49 +174,83 @@ export default function SearchBar(){
                         </MenuItem>
                     </Select>
                 </FormControl>
+
+
+
                 <Popover
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                 >
-                    <Box padding={2}>
-                        {["adults", "children", "infantsSeat", "infantsLap"].map((category) => (
-                        <React.Fragment key={category}>
-                            <Grid container alignItems="center" spacing={2}>
-                                <Grid item xs={6}>
-                                    <Typography>
-                                        {category.charAt(0).toUpperCase() +
-                                        category.slice(1).replace(/([A-Z])/g, " $1")}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <IconButton onClick={() => handleDecrement(category)}>
-                                        <RemoveIcon />
-                                    </IconButton>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Typography>{counts[category]}</Typography>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <IconButton onClick={() => handleIncrement(category)}>
-                                        <AddIcon />
-                                    </IconButton>
-                                </Grid>
-                            </Grid>
-                            <Divider />
-                        </React.Fragment>
-                        ))}
-                        <Button 
-                        onClick={handleClose} 
-                        fullWidth 
-                        variant="contained" 
-                        style={{ marginTop: 10 }}
-                        >
-                        Done
-                        </Button>
-                    </Box>
-                </Popover>
+                <Box padding={2}>
+                {["adults", "children", "infantsSeat", "infantsLap"].map((category) => (
+                <React.Fragment key={category}>
+                  <Grid
+                  container
+                  alignItems="center"
+                  spacing={1}
+                  sx={{
+                    marginBottom: "0.5rem",
+                      }}
+                  >
+              <Grid item xs={6}>
+                <Typography>
+                  {category.charAt(0).toUpperCase() +
+                    category.slice(1).replace(/([A-Z])/g, " $1")}
+                </Typography>
+              </Grid>
+          <Grid item xs={2} sx={{ textAlign: "center" }}>
+            <IconButton
+              onClick={() => handleDecrement(category)}
+              disabled={counts[category] === 0}
+              sx={{
+                width: "2rem",
+                height: "2rem",
+                bgcolor: counts[category] === 0 ? "grey.300" : "#F0FFFF",
+                borderRadius: "4px",
+                "&:hover": {
+                  bgcolor: counts[category] === 0 ? "grey.300" : "#89CFF0",
+                },
+              }}
+            >
+              <RemoveIcon />
+            </IconButton>
+          </Grid>
+          <Grid item xs={2} sx={{ textAlign: "center" }}>
+            <Typography>{counts[category]}</Typography>
+          </Grid>
+          <Grid item xs={2} sx={{ textAlign: "center" }}>
+            <IconButton
+              onClick={() => handleIncrement(category)}
+              sx={{
+                width: "2rem",
+                height: "2rem",
+                bgcolor: "#F0FFFF",
+                borderRadius: "4px",
+                "&:hover": {
+                  bgcolor: "#89CFF0",
+                },
+              }}
+            >
+              <AddIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </React.Fragment>
+    ))}
+    <Button
+      onClick={handleClose}
+      fullWidth
+      variant="contained"
+      style={{ marginTop: 10 }}
+    >
+      Done
+    </Button>
+  </Box>
+</Popover>
+
+
 
                 <FormControl
                 variant="standard"
